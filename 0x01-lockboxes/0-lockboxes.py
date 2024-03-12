@@ -4,10 +4,17 @@
 
 def canUnlockAll(boxes):
     """ a method that determines if all the boxes can be opened"""
-    checked = set()
-    for i in range(len(boxes)):
-        checked = checked | set(boxes[i])
-    # print(checked, set(range(1, len(boxes))), len(boxes) - 1)
-    if checked >= set(range(1, len(boxes))):
-        return True
-    return False
+    # Keep track of visited boxes
+    visited = set()
+    visited.add(0)  # Starting box is always unlocked
+    queue = [0]  # Initialize the queue with the first box
+
+    while queue:
+        current_box = queue.pop(0)
+        for key in boxes[current_box]:
+            if key not in visited and key < len(boxes):
+                visited.add(key)
+                queue.append(key)
+
+    # Check if all boxes have been visited
+    return len(visited) == len(boxes)
