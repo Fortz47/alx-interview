@@ -43,5 +43,4 @@ def minOperations(n: int) -> int:
                     break
                 i = 0
             i += 1
-        print(_dict, que)
         return sum([pow(k, v) for k, v in _dict.items()])
