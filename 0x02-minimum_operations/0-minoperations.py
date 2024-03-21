@@ -20,27 +20,46 @@ def primeNumbers(n: int) -> deque:
     return que
 
 
-def minOperations(n: int) -> int:
-    """calculates the fewest number of operations needed to
-    result in exactly n H characters in the file"""
-    if isinstance(n, int) and n > 0:
-        if n == 1:
-            return 0
-        que = primeNumbers(n)
-        _dict = {}
-        num = n
-        i = 0
-        while True:
-            if num % que[i] == 0:
-                num /= que[i]
-                _dict.setdefault(que[i], 0)
-                _dict[que[i]] += 1
-                if isPrime(num):
-                    if num == 1:
-                        break
-                    _dict.setdefault(num, 0)
-                    _dict[num] += 1
-                    break
-                i = 0
-            i += 1
-        return sum([pow(k, v) for k, v in _dict.items()])
+# def minOperations(n: int) -> int:
+#     """calculates the fewest number of operations needed to
+#     result in exactly n H characters in the file"""
+#     if isinstance(n, int) and n > 0:
+#         if n == 1:
+#             return 0
+#         que = primeNumbers(n)
+#         _dict = {}
+#         num = n
+#         i = 0
+#         while True:
+#             if num % que[i] == 0:
+#                 num /= que[i]
+#                 _dict.setdefault(que[i], 0)
+#                 _dict[que[i]] += 1
+#                 if isPrime(num):
+#                     if num == 1:
+#                         break
+#                     _dict.setdefault(num, 0)
+#                     _dict[num] += 1
+#                     break
+#                 i = 0
+#             i += 1
+#         return sum([pow(k, v) for k, v in _dict.items()])
+
+def minOperations(n):
+    """Calculates the fewest number of operations needed to result in exactly
+    n H characters in the file
+    """
+    if n <= 1:
+        return 0
+
+    # Get all the prime factors of the given number
+    factors = []
+    div = 2
+    while n > 1:
+        if n % div == 0:
+            factors.append(div)
+            n //= div
+        else:
+            div += 1
+
+    return sum(factors)
