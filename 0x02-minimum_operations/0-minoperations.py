@@ -2,22 +2,22 @@
 """Given a number n, write a method that calculates the fewest
 number of operations needed to result in exactly n H
 characters in the file."""
-from collections import deque
+# from collections import deque
 
 
-def isPrime(n: int) -> bool:
-    """check if n is prime"""
-    primes = [2, 3, 5, 7]
-    return all(n % x != 0 for x in primes if n > x)
+# def isPrime(n: int) -> bool:
+#     """check if n is prime"""
+#     primes = [2, 3, 5, 7]
+#     return all(n % x != 0 for x in primes if n > x)
 
 
-def primeNumbers(n: int) -> deque:
-    """return list of prime numbers ranging from 1 to n"""
-    que = deque()
-    for i in range(2, n + 1):
-        if isPrime(i):
-            que.append(i)
-    return que
+# def primeNumbers(n: int) -> deque:
+#     """return list of prime numbers ranging from 1 to n"""
+#     que = deque()
+#     for i in range(2, n + 1):
+#         if isPrime(i):
+#             que.append(i)
+#     return que
 
 
 # def minOperations(n: int) -> int:
