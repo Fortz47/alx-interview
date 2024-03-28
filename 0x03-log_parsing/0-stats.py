@@ -25,7 +25,7 @@ file_size = 0
 ip = r'^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
 date = r'[datetime.datetime\(.+\)]'
 req = r'\"GET /projects/260 HTTP/1.1\" ([0-9]{3}) ([0-9]+)$'
-pattern = f'{ip} - {date} {req}'
+pattern = '{} - {} {}'.format(ip, date, req)
 count = 0
 signal.signal(signal.CTRL_C_EVENT, handler)
 
