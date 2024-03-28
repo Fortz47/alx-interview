@@ -38,7 +38,6 @@ while True:
             file_size = result.group(2)
             stats[status_code] += 1
             file_size += int(file_size)
-            print(f'>>>{result.group(2)}')
             count += 1
             if count % 10 == 0:
                 handler(stats, file_size)
