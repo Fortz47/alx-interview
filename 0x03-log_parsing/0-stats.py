@@ -6,7 +6,7 @@ import signal
 
 def handler(stats, file_size):
     """handles CTRL + C"""
-    print(f"File size: {file_size}")
+    print(f'File size: {file_size}')
     for k, v in stats.items():
         print(f"{k}: {v}")
 
