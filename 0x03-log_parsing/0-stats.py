@@ -38,7 +38,7 @@ while True:
             file_size += int(fileSize)
             count += 1
             if count % 10 == 0:
-                handler(None, None, stats, file_size)
+                handler(stats, file_size)
     except EOFError:
         # EOF (end of file) reached
         break
