@@ -2,11 +2,11 @@
 """script that reads stdin line by line and computes metrics"""
 import re
 import signal
-from functools import partial
+# from functools import partial
 
 
-def handler(signal, frame, stats, file_size):
-    """handles CTRL + C"""
+def log_stat(signal, frame, stats, file_size):
+    """logs stats to stdout"""
     print('File size: {}'.format(file_size))
     for k in stats:
         print("{}: {}".format(k, stats[k]))
@@ -20,8 +20,8 @@ date = r'\[[\d-]+\s[\d:.]+\]'
 req = r'"GET /projects/260 HTTP/1.1" ([0-9]{3}) ([0-9]+)$'
 pattern = '{} - {} {}'.format(ip, date, req)
 count = 0
-handler_with_args = partial(handler, stats=stats, file_size=file_size)
-signal.signal(signal.SIGINT, handler_with_args)
+# handler_with_args = partial(handler, stats=stats, file_size=file_size)
+# signal.signal(signal.SIGINT, handler_with_args)
 
 while True:
     try:
@@ -38,7 +38,13 @@ while True:
             file_size += int(fileSize)
             count += 1
             if count % 10 == 0:
-                handler(stats, file_size)
+                # print('File size: {}'.format(file_size))
+                # for k in stats:
+                #     print("{}: {}".format(k, stats[k]))
+                log_stat(stats, file_size)
     except EOFError:
         # EOF (end of file) reached
         break
+    except KeyboardInterrupt:
+        log_stat(stats, file_size)
+        raise KeyboardInterrupt   
