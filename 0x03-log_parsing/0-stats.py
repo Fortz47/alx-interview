@@ -7,8 +7,8 @@ import signal
 def handler(stats, file_size):
     """handles CTRL + C"""
     print('File size: {}'.format(file_size))
-    for k, v in stats.items():
-        print("{}: {}".format(k, v))
+    for k in stats:
+        print("{}: {}".format(k, stats[k]))
 
 stats = {
     '200': 0,
@@ -35,9 +35,9 @@ while True:
         result = re.match(pattern, line)
         if result:
             status_code = result.group(1)
-            file_size = result.group(2)
-            stats[status_code] += 1
-            file_size += int(file_size)
+            fileSize = result.group(2)
+            stats[status_code] += 1 if status_code in stats
+            file_size += int(fileSize)
             count += 1
             if count % 10 == 0:
                 handler(stats, file_size)
