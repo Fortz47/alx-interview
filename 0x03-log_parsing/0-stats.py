@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """script that reads stdin line by line and computes metrics"""
 import re
-import signal
-import os
+import sys
 
 
 def log_stat(stats, file_size):
@@ -22,8 +21,8 @@ req = r'"GET /projects/260 HTTP/1.1" ([0-9]{3}) ([0-9]+)$'
 pattern = '{} - {} {}'.format(ip, date, req)
 count = 0
 
-while True:
     try:
+        for line in sys.stdin:
         line = input().strip()
         result = re.match(pattern, line)
         if result:
@@ -35,13 +34,9 @@ while True:
                 else:
                     stats[status_code] = 1
             file_size += int(fileSize)
-            count += 1
-            if count % 10 == 0:
-                log_stat(stats, file_size)
-    except EOFError:
-        # EOF (end of file) reached
-        break
+        count += 1
+        if count % 10 == 0:
+            log_stat(stats, file_size)
     except KeyboardInterrupt:
         log_stat(stats, file_size)
-        # os.kill(os.getpid(), signal.SIGINT)
         raise
