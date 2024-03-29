@@ -36,7 +36,8 @@ while True:
         if result:
             status_code = result.group(1)
             fileSize = result.group(2)
-            stats[status_code] += 1 if status_code in stats
+            if status_code in stats:
+                stats[status_code] += 1
             file_size += int(fileSize)
             count += 1
             if count % 10 == 0:
