@@ -7,9 +7,8 @@ import sys
 def log_stat(stats, file_size):
     """logs stats to stdout"""
     print('File size: {}'.format(file_size))
-    stats = sorted(stats)
-    for k, v in stats.items():
-        print("{}: {}".format(k, v))
+    for code in sorted(stats):
+        print("{}: {}".format(code, stats[code]))
 
 
 codes = ['200', '301', '400', '401', '403', '404', '405', '500']
