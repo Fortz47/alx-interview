@@ -23,17 +23,16 @@ count = 0
 
     try:
         for line in sys.stdin:
-        line = input().strip()
-        result = re.match(pattern, line)
-        if result:
-            status_code = result.group(1)
-            fileSize = result.group(2)
-            if status_code in codes:
-                if stats.get(status_code):
-                    stats[status_code] += 1
-                else:
-                    stats[status_code] = 1
-            file_size += int(fileSize)
+            result = re.match(pattern, line)
+            if result:
+                status_code = result.group(1)
+                fileSize = result.group(2)
+                if status_code in codes:
+                    if stats.get(status_code):
+                        stats[status_code] += 1
+                    else:
+                        stats[status_code] = 1
+                file_size += int(fileSize)
         count += 1
         if count % 10 == 0:
             log_stat(stats, file_size)
