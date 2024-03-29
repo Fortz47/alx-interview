@@ -33,9 +33,9 @@ try:
                 else:
                     stats[int(status_code)] = 1
             file_size += int(fileSize)
-            count += 1
-            if count % 10 == 0:
-                log_stat(stats, file_size)
+        count += 1
+        if count % 10 == 0:
+            log_stat(stats, file_size)
     log_stat(stats, file_size)
 except KeyboardInterrupt:
     log_stat(stats, file_size)
