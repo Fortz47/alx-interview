@@ -11,6 +11,7 @@ def log_stat(stats, file_size):
     for k, v in stats.items():
         print("{}: {}".format(k, v))
 
+
 codes = ['200', '301', '400', '401', '403', '404', '405', '500']
 stats = {}
 
