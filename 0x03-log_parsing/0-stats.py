@@ -5,7 +5,7 @@ import signal
 # from functools import partial
 
 
-def log_stat(signal, frame, stats, file_size):
+def log_stat(stats, file_size):
     """logs stats to stdout"""
     print('File size: {}'.format(file_size))
     for k in stats:
@@ -47,4 +47,4 @@ while True:
         break
     except KeyboardInterrupt:
         log_stat(stats, file_size)
-        raise KeyboardInterrupt   
+        raise KeyboardInterrupt
