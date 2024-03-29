@@ -15,14 +15,14 @@ if __name__ == "__main__":
 
     codes = ['200', '301', '400', '401', '403', '404', '405', '500']
     stats = {}
-    
+
     file_size = 0
     ip = r'^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
     date = r'\[[\d-]+\s[\d:.]+\]'
     req = r'"GET /projects/260 HTTP/1.1" ([0-9]{3}) ([0-9]+)$'
     pattern = '{} - {} {}'.format(ip, date, req)
     count = 0
-    
+
     try:
         for line in sys.stdin:
             result = re.match(pattern, line)
