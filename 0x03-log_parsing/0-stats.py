@@ -21,23 +21,22 @@ req = r'"GET /projects/260 HTTP/1.1" ([0-9]{3}) ([0-9]+)$'
 pattern = '{} - {} {}'.format(ip, date, req)
 count = 0
 
-if __name__ == "__main__":
-    try:
-        for line in sys.stdin:
-            result = re.match(pattern, line)
-            if result:
-                status_code = result.group(1)
-                fileSize = result.group(2)
-                if status_code in codes:
-                    if stats.get(int(status_code)):
-                        stats[int(status_code)] += 1
-                    else:
-                        stats[int(status_code)] = 1
-                file_size += int(fileSize)
-            count += 1
-            if count % 10 == 0:
-                log_stat(stats, file_size)
-        log_stat(stats, file_size)
-    except KeyboardInterrupt:
-        log_stat(stats, file_size)
-        raise
+try:
+    for line in sys.stdin:
+        result = re.match(pattern, line)
+        if result:
+            status_code = result.group(1)
+            fileSize = result.group(2)
+            if status_code in codes:
+                if stats.get(int(status_code)):
+                    stats[int(status_code)] += 1
+                else:
+                    stats[int(status_code)] = 1
+            file_size += int(fileSize)
+        count += 1
+        if count % 10 == 0:
+            log_stat(stats, file_size)
+    log_stat(stats, file_size)
+except KeyboardInterrupt:
+    log_stat(stats, file_size)
+    raise
