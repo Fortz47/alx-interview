@@ -32,7 +32,7 @@ while True:
             if status_code in codes:
                 if stats.get(status_code):
                     stats[status_code] += 1
-                else
+                else:
                     stats[status_code] = 1
             file_size += int(fileSize)
             count += 1
