@@ -43,4 +43,5 @@ while True:
         break
     except KeyboardInterrupt:
         log_stat(stats, file_size)
-        os.kill(os.getpid(), signal.SIGINT)
+        # os.kill(os.getpid(), signal.SIGINT)
+        raise
