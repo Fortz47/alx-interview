@@ -7,7 +7,8 @@ import sys
 def log_stat(stats, file_size):
     """logs stats to stdout"""
     print('File size: {}'.format(file_size))
-    for k, v in sorted(stats).items():
+    stats = sorted(stats)
+    for k, v in stats.items():
         print("{}: {}".format(k, v))
 
 
