@@ -17,7 +17,8 @@ if __name__ == "__main__":
     stats = {}
 
     file_size = 0
-    ip = r'^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}|[a-zA-Z]+'
+    # ip = r'^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+    ip = r'^[a-zA-Z\d.]+'
     date = r'\[[\d-]+\s[\d:.]+\]'
     req = r'"GET /projects/260 HTTP/1.1" ([0-9]{3}) ([0-9]+)$'
     pattern = '{}\s?-\s?{} {}'.format(ip, date, req)
@@ -27,20 +28,17 @@ if __name__ == "__main__":
         for line in sys.stdin:
             result = re.match(pattern, line)
             if result:
-                print(result.group(0))
-                print(result.group(1))
-                print(result.group(2))
                 status_code = result.group(1)
                 fileSize = result.group(2)
-                # if status_code in codes:
-                #     if stats.get(int(status_code)):
-                #         stats[int(status_code)] += 1
-                #     else:
-                #         stats[int(status_code)] = 1
-                # file_size += int(fileSize)
-                # count += 1
-                # if count % 10 == 0:
-                #     log_stat(stats, file_size)
+                if status_code in codes:
+                    if stats.get(int(status_code)):
+                        stats[int(status_code)] += 1
+                    else:
+                        stats[int(status_code)] = 1
+                file_size += int(fileSize)
+                count += 1
+                if count % 10 == 0:
+                    log_stat(stats, file_size)
         log_stat(stats, file_size)
 
     except KeyboardInterrupt:
