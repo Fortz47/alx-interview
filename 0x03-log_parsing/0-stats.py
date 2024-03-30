@@ -27,9 +27,9 @@ if __name__ == "__main__":
         for line in sys.stdin:
             result = re.match(pattern, line)
             if result:
-                print(result.groug(0))
-                print(result.groug(1))
-                print(result.groug(2))
+                print(result.group(0))
+                print(result.group(1))
+                print(result.group(2))
                 status_code = result.group(1)
                 fileSize = result.group(2)
                 # if status_code in codes:
