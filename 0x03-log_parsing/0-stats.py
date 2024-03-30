@@ -27,17 +27,20 @@ if __name__ == "__main__":
         for line in sys.stdin:
             result = re.match(pattern, line)
             if result:
+                print(result.groug(0))
+                print(result.groug(1))
+                print(result.groug(2))
                 status_code = result.group(1)
                 fileSize = result.group(2)
-                if status_code in codes:
-                    if stats.get(int(status_code)):
-                        stats[int(status_code)] += 1
-                    else:
-                        stats[int(status_code)] = 1
-                file_size += int(fileSize)
-                count += 1
-                if count % 10 == 0:
-                    log_stat(stats, file_size)
+                # if status_code in codes:
+                #     if stats.get(int(status_code)):
+                #         stats[int(status_code)] += 1
+                #     else:
+                #         stats[int(status_code)] = 1
+                # file_size += int(fileSize)
+                # count += 1
+                # if count % 10 == 0:
+                #     log_stat(stats, file_size)
         log_stat(stats, file_size)
 
     except KeyboardInterrupt:
