@@ -10,3 +10,4 @@ def validUTF8(data):
                 if not (val >= 0 and val <= 127):
                     return False
             return True
+    return False
