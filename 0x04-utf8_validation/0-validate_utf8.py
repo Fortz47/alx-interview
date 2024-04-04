@@ -4,6 +4,7 @@
 
 def validUTF8(data):
     """determines if a given data set represents a valid UTF-8 encoding"""
+    dummy = data[0] >> 7
     if all(isinstance(x, int) for x in data) and isinstance(data, list):
         if len(data):
             for val in [data[0], data[-1]]:
