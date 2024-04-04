@@ -7,8 +7,8 @@ def validUTF8(data):
     dummy = data[0] >> 7
     if all(isinstance(x, int) for x in data) and isinstance(data, list):
         if len(data):
-            for val in [data[0], data[-1]]:
-                if not (val >= 0 and val <= 127):
+            for val in data:
+                if not (val >= 0 and val <= 255):
                     return False
             return True
     return False
