@@ -15,14 +15,15 @@ if __name__ == "__main__":
 
     codes = ['200', '301', '400', '401', '403', '404', '405', '500']
     stats = {}
-    
+
     file_size = 0
-    ip = r'^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+    # ip = r'^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+    ip = r'^[a-zA-Z\d.]+'
     date = r'\[[\d-]+\s[\d:.]+\]'
     req = r'"GET /projects/260 HTTP/1.1" ([0-9]{3}) ([0-9]+)$'
-    pattern = '{} - {} {}'.format(ip, date, req)
+    pattern = '{}\s?-\s?{} {}'.format(ip, date, req)
     count = 0
-    
+
     try:
         for line in sys.stdin:
             result = re.match(pattern, line)
@@ -35,10 +36,11 @@ if __name__ == "__main__":
                     else:
                         stats[int(status_code)] = 1
                 file_size += int(fileSize)
-            count += 1
-            if count % 10 == 0:
-                log_stat(stats, file_size)
+                count += 1
+                if count % 10 == 0:
+                    log_stat(stats, file_size)
         log_stat(stats, file_size)
+
     except KeyboardInterrupt:
         log_stat(stats, file_size)
         raise
