@@ -4,7 +4,7 @@ from typing import List
 
 
 def validUTF8(data: List[int]) -> bool:
-    """determines if a given data set represents a valid UTF-8 encoding"""
+    """determines if a given data set represents a valid UTF-8 encoding."""
     num_bytes_to_follow = 0
 
     for byte in data:
