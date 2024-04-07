@@ -8,6 +8,7 @@ def validUTF8(data: List[int]) -> bool:
     num_bytes_to_follow = 0
 
     for byte in data:
+        byte &= 0xFF
         if num_bytes_to_follow == 0:
             if (byte >> 7) == 0:
                 continue
