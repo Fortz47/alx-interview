@@ -3,8 +3,8 @@
 const request = require('request');
 
 function print_characters() {
-	if (process.argv.length < 2) return;
-	const movie_id = process.argv[1];
+	if (process.argv.length < 3) return;
+	const movie_id = process.argv[2];
 	const url = 'https://swapi-api.alx-tools.com/api/films/' + movie_id + '/';
 	request(url, (err, res, body) => {
 		if (err) {
@@ -22,3 +22,5 @@ function print_characters() {
 		});
 	});
 };
+
+print_characters();
