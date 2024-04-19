@@ -2,9 +2,9 @@
 
 const request = require('request');
 
-function fetchCharacter(character_url) {
+function fetchCharacter (characterUrl) {
   return new Promise((resolve, reject) => {
-    request(character_url, (err, res, body) => {
+    request(characterUrl, (err, res, body) => {
       if (err) {
         reject(err);
       } else {
@@ -14,11 +14,11 @@ function fetchCharacter(character_url) {
   });
 }
 
-async function print_characters() {
+async function printCharacters () {
   if (process.argv.length < 3) return;
 
-  const movie_id = process.argv[2];
-  const url = `https://swapi-api.alx-tools.com/api/films/${movie_id}/`;
+  const movieId = process.argv[2];
+  const url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
   try {
     const movieResponse = await new Promise((resolve, reject) => {
@@ -40,4 +40,4 @@ async function print_characters() {
   }
 }
 
-print_characters();
+printCharacters();
