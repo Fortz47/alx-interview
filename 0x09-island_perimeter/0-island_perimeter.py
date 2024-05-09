@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Island perimeter grid Module"""
 
+
 def island_perimeter(grid):
     """
      returns the perimeter of the island described in grid:
@@ -11,7 +12,7 @@ def island_perimeter(grid):
         Each cell is square, with a side length of 1
         Cells are connected horizontally/vertically (not diagonally).
         grid is rectangular, with its width and height not exceeding 100
-        
+
     The grid is completely surrounded by water
     There is only one island (or nothing).
     The island doesn’t have “lakes” (water inside that isn’t connected
@@ -23,7 +24,7 @@ def island_perimeter(grid):
     perimeter = 0
     grid_height = len(grid)
     grid_width = len(grid[0])
-    if grid_height > 100 or grid_width > 100
+    if grid_height > 100 or grid_width > 100:
         return
 
     for row in range(grid_height):
