@@ -20,16 +20,16 @@ def island_perimeter(grid):
     """
 
     perimeter = 0
-    grid_height = len(grid)
-    grid_width = len(grid[0])
+    h = len(grid)
+    w = len(grid[0])
 
-    for row in range(grid_height):
-        for cell in range(grid_width):
-            if grid[row][cell] != 1:
+    for i in range(h):
+        for j in range(w):
+            if grid[i][j] != 1:
                 continue
-            right = 0 if grid[row][cell + 1] else 1
-            left = 0 if grid[row][cell - 1] else 1
-            up = 0 if grid[row - 1][cell] else 1
-            down = 0 if grid[row + 1][cell] else 1
+            right = 0 if w > j + 1 and grid[i][j + 1] else 1
+            left = 0 if j > 0 and grid[i][j - 1] else 1
+            up = 0 if i > 0 and grid[i - 1][j] else 1
+            down = 0 if h > i + 1 and grid[i + 1][j] else 1
             perimeter += (right + left + up + down)
     return perimeter
