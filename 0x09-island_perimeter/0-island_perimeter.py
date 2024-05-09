@@ -19,13 +19,9 @@ def island_perimeter(grid):
     to the water surrounding the island).
     """
 
-    if not isinstance(grid, list):
-        return
     perimeter = 0
     grid_height = len(grid)
     grid_width = len(grid[0])
-    if grid_height > 100 or grid_width > 100:
-        return
 
     for row in range(grid_height):
         for cell in range(grid_width):
