@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module to solve prime game"""
 
+
 def isWinner(x, nums):
     def sieve(max_n):
         """
