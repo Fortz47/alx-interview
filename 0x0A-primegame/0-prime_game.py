@@ -3,6 +3,7 @@
 
 
 def isWinner(x, nums):
+    """find the winner"""
     def sieve(max_n):
         """
         Create a list of boolean values indicating prime numbers up to max_n.
